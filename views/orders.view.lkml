@@ -51,6 +51,11 @@ view: orders {
     # hidden: yes
     sql: ${TABLE}."USER_ID" ;;
   }
+  measure: bool {
+    label: "Has used android device"
+    type: yesno
+    sql: MAX(${status}='Pending') ;;
+  }
   measure: count {
     type: count
     drill_fields: [detail*]
@@ -59,13 +64,13 @@ view: orders {
   # ----- Sets of fields for drilling ------
   set: detail {
     fields: [
-	id,
-	users.name,
-	users.id,
-	billion_orders.count,
-	hundred_million_orders.count,
-	order_items.count
-	]
+  id,
+  users.name,
+  users.id,
+  billion_orders.count,
+  hundred_million_orders.count,
+  order_items.count
+  ]
   }
 
 }
